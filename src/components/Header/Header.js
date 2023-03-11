@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Arrow } from '../ui/Arrow';
+import { Arrow } from '../ui/Arrow/Arrow';
 import { formatDate } from '../../utils/formatDate';
 import classes from './Header.module.css';
 
@@ -36,6 +36,8 @@ export const Header = () => {
     };
   }, []);
 
+  //console.log('data', data);
+
   return (
     <div className={classes.container}>
       <section
@@ -46,20 +48,36 @@ export const Header = () => {
         </div>
 
         <span>
-          As of:{' '}
-          {data?.lastUpdate ? formatDate(data?.lastUpdate) : 'Loading...'}
+          As of: {data?.lastUpdate ? formatDate(data?.lastUpdate) : '...'}
         </span>
       </section>
 
       <section className={classes.sectionWrapper}>
         <div className={classes.stockPriceWrapper}>
-          {5 > 0 ? <Arrow state={'up'} /> : <Arrow state={'down'} />}
-          <h2>145.35</h2>
+          {console.log(data?.change)}
+          {data?.change ? (
+            data?.change > 0 ? (
+              <Arrow state={'up'} />
+            ) : (
+              <Arrow state={'down'} />
+            )
+          ) : (
+            ''
+          )}
+          <h2>{data?.last ? data?.last : '...'}</h2>
         </div>
 
-        <div className={classes.stockInfoWrapper}>
-          <h4>+1.5.01</h4>
-          <h4>(+2.53%)</h4>
+        <div
+          className={`${classes.stockInfoWrapper} ${
+            data?.change > 0 ? classes.isPositive : classes.isNegative
+          }`}
+        >
+          {data?.change && (
+            <>
+              <h4>{data?.change}</h4>
+              <h4>({data?.percentChange}%)</h4>
+            </>
+          )}
         </div>
       </section>
     </div>

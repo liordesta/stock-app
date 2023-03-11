@@ -41,6 +41,11 @@
 }
 .stockInfoWrapper h4 {
   font-size: 14px;
-  color: #517e11;
   margin: 0;
+}
+.isPositive h4 {
+  color: #517e11;
+}
+.isNegative h4 {
+  color: #d91e18;
 }
