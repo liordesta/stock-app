@@ -1,0 +1,23 @@
+.tableWrapper {
+  margin-top: 16px;
+}
+
+.tableWrapper > div {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.tableWrapper table {
+  border: 1px solid #999999;
+}
+
+.tableWrapper thead th {
+  background-color: #ebebeb;
+  color: #000000;
+  border-bottom: 1px solid #999999;
+}
+
+.tableWrapper tbody th,
+.tableWrapper tbody td {
+  border-bottom: 1px solid #999999;
+}
