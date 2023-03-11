@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import { Tabs as MuiTabs } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import { TabPanel } from './TabPanel';
+import { History } from '../../History/History';
+import { Overview } from '../../Overview/Overview';
 import { a11yProps } from './helpers';
 import classes from './Tabs.module.css';
 
@@ -32,10 +34,10 @@ export const Tabs = () => {
         </CustomTabs>
       </div>
       <TabPanel value={tab} index={0}>
-        <div>test one 111</div>
+        <Overview />
       </TabPanel>
       <TabPanel value={tab} index={1}>
-        <div>test two 222</div>
+        <History />
       </TabPanel>
     </div>
   );
