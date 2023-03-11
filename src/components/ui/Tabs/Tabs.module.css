@@ -1,0 +1,6 @@
+.tabsContainer {
+  margin: 16px;
+}
+.tabsContainer > div:first-of-type {
+  border-bottom: 1px solid #ebebeb;
+}

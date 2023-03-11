@@ -36,8 +36,6 @@ export const Header = () => {
     };
   }, []);
 
-  //console.log('data', data);
-
   return (
     <div className={classes.container}>
       <section
@@ -54,7 +52,6 @@ export const Header = () => {
 
       <section className={classes.sectionWrapper}>
         <div className={classes.stockPriceWrapper}>
-          {console.log(data?.change)}
           {data?.change ? (
             data?.change > 0 ? (
               <Arrow state={'up'} />
