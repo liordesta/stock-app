@@ -1,0 +1,8 @@
+.up > svg {
+  fill: #517e11;
+}
+
+.down > svg {
+  fill: #d91e18;
+  transform: rotate(180deg);
+}
