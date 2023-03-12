@@ -9,17 +9,37 @@ const CustomButtonGroup = styled(ButtonGroup)({
     fontWeight: 400,
     textTransform: 'capitalize',
   },
+  '& .MuiButtonSelectedTime': {
+    textDecorationLine: 'underline',
+    textUnderlineOffset: '10px',
+  },
 });
 
-export const TimeFrame = () => {
-  const handleButtonClick = () => {};
+export const TimeFrame = ({ selectedTimeFrame, setSelectedTimeFrame }) => {
+  const handleButtonClick = ({ id }) => {
+    const updatedTimeFrames = selectedTimeFrame.map((timeFrame) => {
+      if (timeFrame.id === id) {
+        return { ...timeFrame, selected: true };
+      } else {
+        return { ...timeFrame, selected: false };
+      }
+    });
+
+    setSelectedTimeFrame(updatedTimeFrames);
+  };
+
   return (
     <div className={classes.timeFrameWrapper}>
       <CustomButtonGroup variant='string'>
-        <Button onClick={() => handleButtonClick(0)}>1 Minute</Button>
-        <Button onClick={() => handleButtonClick(0)}>5 Minutes</Button>
-        <Button onClick={() => handleButtonClick(0)}>1 Hour</Button>
-        <Button onClick={() => handleButtonClick(0)}>1 Week</Button>
+        {selectedTimeFrame?.map((time) => (
+          <Button
+            key={time.id}
+            className={time.selected ? 'MuiButtonSelectedTime' : ''}
+            onClick={() => handleButtonClick(time)}
+          >
+            {time.label}
+          </Button>
+        ))}
       </CustomButtonGroup>
     </div>
   );

@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const formatDate = (date) => {
+export const formatDate = (date, withTime) => {
   const getDate = moment.utc(date).local();
-  return getDate.format('MMM DD, YYYY HH:mm [UTC]');
+  return getDate.format(`MMM DD, YYYY ${withTime ? 'HH:mm [UTC]' : ''}`);
 };

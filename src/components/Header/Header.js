@@ -46,7 +46,7 @@ export const Header = () => {
         </div>
 
         <span>
-          As of: {data?.lastUpdate ? formatDate(data?.lastUpdate) : '...'}
+          As of: {data?.lastUpdate ? formatDate(data?.lastUpdate, true) : '...'}
         </span>
       </section>
 
