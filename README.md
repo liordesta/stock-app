@@ -26,3 +26,4 @@ List of technologies/tools used in the project:
 - React-Query
 - Material-UI
 - Recharts
+- WebSocket
