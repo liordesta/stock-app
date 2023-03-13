@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { useAppContext } from '../../../contexts/AppContext';
 import classes from './TimeFrame.module.css';
 
 const CustomButtonGroup = styled(ButtonGroup)({
@@ -15,7 +16,9 @@ const CustomButtonGroup = styled(ButtonGroup)({
   },
 });
 
-export const TimeFrame = ({ selectedTimeFrame, setSelectedTimeFrame }) => {
+export const TimeFrame = () => {
+  const { selectedTimeFrame, setSelectedTimeFrame } = useAppContext();
+
   const handleButtonClick = ({ id }) => {
     const updatedTimeFrames = selectedTimeFrame.map((timeFrame) => {
       if (timeFrame.id === id) {

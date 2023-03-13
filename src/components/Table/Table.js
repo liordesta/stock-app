@@ -9,13 +9,15 @@ import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import classes from './Table.module.css';
+import { useAppContext } from '../../contexts/AppContext';
 import { formatDate } from '../../utils/formatDate';
 
-export const Table = ({ data }) => {
+export const Table = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [orderBy, setOrderBy] = useState('date');
   const [order, setOrder] = useState('desc');
+  const { apiData } = useAppContext();
 
   const handleChangePage = (_, newPage) => {
     setPage(newPage);
@@ -35,7 +37,7 @@ export const Table = ({ data }) => {
     }
   };
 
-  const transformedData = data.map((stock) => {
+  const transformedData = apiData.map((stock) => {
     return {
       id: stock.Date,
       date: formatDate(new Date(stock.Date)),

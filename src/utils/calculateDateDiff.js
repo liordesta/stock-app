@@ -1,10 +1,10 @@
 function getDateRange(type) {
   const today = new Date();
   const endDate = new Date(today);
-  endDate.setDate(today.getDate() - 1);
+  endDate.setDate(today.getDate() - 2);
   const startDate = new Date(today);
   if (type === 'day') {
-    startDate.setDate(today.getDate() - 2);
+    startDate.setDate(today.getDate() - 3);
   } else {
     startDate.setDate(today.getDate() - 1);
     startDate.setMonth(today.getMonth() - 1);

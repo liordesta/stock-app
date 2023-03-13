@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { Tabs as MuiTabs } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import { TabPanel } from './TabPanel';
 import { History } from '../../History/History';
 import { Overview } from '../../Overview/Overview';
+import { useAppContext } from '../../../contexts/AppContext';
+import { useStockData } from '../../../hooks/useStockData';
 import { a11yProps } from './helpers';
 import classes from './Tabs.module.css';
 
@@ -20,6 +22,21 @@ export const Tabs = () => {
   const handleChange = (_, newValue) => {
     setTab(newValue);
   };
+
+  const { selectedTimeFrame, setApiData, setApiStatus } = useAppContext();
+  const stockTimeDate = selectedTimeFrame?.filter((time) => time.selected);
+  const { data, status } = useStockData(
+    stockTimeDate[0].id,
+    stockTimeDate[0].period,
+    stockTimeDate[0].precision,
+    stockTimeDate[0].startTime,
+    stockTimeDate[0].endTime
+  );
+
+  useEffect(() => {
+    setApiData(data);
+    setApiStatus(status);
+  }, [data, setApiData, setApiStatus, status]);
 
   return (
     <div className={classes.tabsContainer}>

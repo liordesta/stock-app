@@ -1,0 +1,6 @@
+.chartWrapper {
+  margin-top: 24px;
+}
+.chartWrapper > div {
+  padding: 16px;
+}

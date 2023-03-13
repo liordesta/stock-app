@@ -1,0 +1,10 @@
+.tooltipWrapper {
+  border: 2px solid rgb(78, 161, 254);
+  background-color: rgba(42, 81, 208, 0.5);
+  color: white;
+  font-size: 14px;
+  padding: 6px;
+}
+.tooltipWrapper p {
+  margin: 0;
+}
