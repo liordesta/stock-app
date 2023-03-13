@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { AppProvider } from './contexts/AppContext';
 import App from './App';
 import './index.css';
+import 'typeface-roboto';
 
 const queryClient = new QueryClient();
 
