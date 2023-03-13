@@ -3,6 +3,13 @@ body {
   font-family: 'Roboto';
 }
 
+h2,
+h4,
+p,
+span {
+  font-family: 'Roboto';
+}
+
 .App {
   max-width: 860px;
   margin-left: auto;
