@@ -3,7 +3,7 @@ import { tooltipDate } from '../../../utils/formatDate';
 import classes from './CustomTooltip.module.css';
 
 export const CustomTooltip = ({ active, payload, label }) => {
-  if (active) {
+  if (active && payload) {
     return (
       <div className={classes.tooltipWrapper}>
         <p>Date/Time: {tooltipDate(label)}</p>
