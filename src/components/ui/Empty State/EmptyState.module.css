@@ -1,0 +1,27 @@
+.emptyContainer {
+  padding: 16px;
+}
+
+.emptyWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 300px;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 6px 0px;
+}
+.emptyWrapper img {
+  height: 50px;
+  width: 50px;
+}
+.emptyWrapper h4 {
+  margin: 8px 0 0 0;
+  font-weight: 400;
+}
+.emptyWrapper p {
+  text-align: center;
+  font-weight: 300;
+  font-size: 14px;
+}

@@ -5,6 +5,8 @@ import Tab from '@mui/material/Tab';
 import { TabPanel } from './TabPanel';
 import { History } from '../../History/History';
 import { Overview } from '../../Overview/Overview';
+import { EmptyState } from '../Empty State/EmptyState';
+import { LoadingSpinner } from '../../ui/LoadingSpinner/LoadingSpinner';
 import { useAppContext } from '../../../contexts/AppContext';
 import { useStockData } from '../../../hooks/useStockData';
 import { a11yProps } from './helpers';
@@ -25,7 +27,7 @@ export const Tabs = () => {
 
   const { selectedTimeFrame, setApiData, setApiStatus } = useAppContext();
   const stockTimeDate = selectedTimeFrame?.filter((time) => time.selected);
-  const { data, status } = useStockData(
+  const { data, status, isFetching, isFetched } = useStockData(
     stockTimeDate[0].id,
     stockTimeDate[0].period,
     stockTimeDate[0].precision,
@@ -37,6 +39,10 @@ export const Tabs = () => {
     setApiData(data);
     setApiStatus(status);
   }, [data, setApiData, setApiStatus, status]);
+
+  if (status.loading || isFetching) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className={classes.tabsContainer}>
@@ -51,10 +57,10 @@ export const Tabs = () => {
         </CustomTabs>
       </div>
       <TabPanel value={tab} index={0}>
-        <Overview />
+        {data?.length && isFetched ? <Overview /> : <EmptyState />}
       </TabPanel>
       <TabPanel value={tab} index={1}>
-        <History />
+        {data?.length && isFetched ? <History /> : <EmptyState />}
       </TabPanel>
     </div>
   );
