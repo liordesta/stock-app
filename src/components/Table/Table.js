@@ -10,7 +10,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import classes from './Table.module.css';
 import { useAppContext } from '../../contexts/AppContext';
-import { formatDate } from '../../utils/formatDate';
+import { dateFormatHeaderTable } from '../../utils/date';
 
 export const Table = () => {
   const [page, setPage] = useState(0);
@@ -39,13 +39,12 @@ export const Table = () => {
 
   const transformedData = apiData.map((stock) => {
     return {
-      id: stock.Date,
-      date: formatDate(new Date(stock.Date)),
-      high: stock.High,
-      low: stock.Low,
-      open: stock.Open,
-      close: stock.Close,
-      change: 'TBD',
+      id: stock.t,
+      date: dateFormatHeaderTable(new Date(stock.t)),
+      high: stock.h,
+      low: stock.l,
+      open: stock.o,
+      close: stock.c,
     };
   });
 
@@ -128,7 +127,6 @@ export const Table = () => {
                   Close
                 </TableSortLabel>
               </TableCell>
-              <TableCell align='right'>% Change</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -144,7 +142,6 @@ export const Table = () => {
                 <TableCell align='right'>{row.low}</TableCell>
                 <TableCell align='right'>{row.open}</TableCell>
                 <TableCell align='right'>{row.close}</TableCell>
-                <TableCell align='right'>{row.change}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Arrow } from '../ui/Arrow/Arrow';
-import { formatDate } from '../../utils/formatDate';
+import { dateFormatHeaderTable } from '../../utils/date';
 import classes from './Header.module.css';
 
 export const Header = () => {
@@ -47,7 +47,10 @@ export const Header = () => {
         </div>
 
         <span>
-          As of: {data?.lastUpdate ? formatDate(data?.lastUpdate, true) : '...'}
+          As of:{' '}
+          {data?.lastUpdate
+            ? dateFormatHeaderTable(data?.lastUpdate, true)
+            : '...'}
         </span>
       </section>
 
@@ -65,18 +68,16 @@ export const Header = () => {
           <h2>{data?.last ? data?.last : '...'}</h2>
         </div>
 
-        <div
-          className={`${classes.stockInfoWrapper} ${
-            data?.change > 0 ? classes.isPositive : classes.isNegative
-          }`}
-        >
-          {data?.change && (
-            <>
-              <h4>{data?.change}</h4>
-              <h4>({data?.percentChange}%)</h4>
-            </>
-          )}
-        </div>
+        {data?.change !== 0 && (
+          <div
+            className={`${classes.stockInfoWrapper} ${
+              data?.change > 0 ? classes.isPositive : classes.isNegative
+            }`}
+          >
+            <h4>{data?.change}</h4>
+            <h4>({data?.percentChange}%)</h4>
+          </div>
+        )}
       </section>
     </div>
   );

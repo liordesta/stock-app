@@ -1,7 +1,7 @@
-import { calculateDateDiff } from '../../../utils/calculateDateDiff';
+import { getDateRange } from '../../../utils/date';
 
-const [dayStartTime, dayEndTime] = calculateDateDiff('day');
-const [monthStartTime, monthEndTime] = calculateDateDiff('month');
+const [dayStartTime, dayEndTime] = getDateRange('day');
+const [monthStartTime, monthEndTime] = getDateRange('month');
 
 export const timeFrames = [
   {
@@ -9,7 +9,7 @@ export const timeFrames = [
     selected: true,
     label: '1 Minute',
     period: 1,
-    precision: 'Minutes',
+    precision: 'minute',
     startTime: dayStartTime,
     endTime: dayEndTime,
   },
@@ -18,7 +18,7 @@ export const timeFrames = [
     selected: false,
     label: '5 Minutes',
     period: 5,
-    precision: 'Minutes',
+    precision: 'minute',
     startTime: dayStartTime,
     endTime: dayEndTime,
   },
@@ -27,7 +27,7 @@ export const timeFrames = [
     selected: false,
     label: '1 Hour',
     period: 1,
-    precision: 'Hours',
+    precision: 'minute',
     startTime: dayStartTime,
     endTime: dayEndTime,
   },
@@ -35,8 +35,8 @@ export const timeFrames = [
     id: 4,
     selected: false,
     label: '1 Week',
-    period: 30,
-    precision: 'Minutes',
+    period: 1,
+    precision: 'day',
     startTime: monthStartTime,
     endTime: monthEndTime,
   },

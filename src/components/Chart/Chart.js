@@ -7,9 +7,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import moment from 'moment';
 import { CustomTooltip } from '../ui/CustomTooltip/CustomTooltip';
 import { useAppContext } from '../../contexts/AppContext';
+import { dateBottomChartTick } from '../../utils/date';
 import classes from './Chart.module.css';
 
 export const Chart = () => {
@@ -19,20 +19,9 @@ export const Chart = () => {
 
   let minYValue, maxYValue;
 
-  const dateTick = (date) => {
-    if (
-      selectedTime.label === '1 Minute' ||
-      selectedTime.label === '5 Minutes' ||
-      selectedTime.label === '1 Hour'
-    ) {
-      return moment(new Date(date)).format('HH:mm').toString();
-    }
-    return moment(new Date(date)).format('DD-MMM').toString();
-  };
-
   if (apiData) {
-    minYValue = Math.min(...apiData?.map((item) => item.Low));
-    maxYValue = Math.max(...apiData?.map((item) => item.High));
+    minYValue = Math.min(...apiData?.map((item) => item.l));
+    maxYValue = Math.max(...apiData?.map((item) => item.h));
   }
 
   return (
@@ -50,8 +39,8 @@ export const Chart = () => {
           }}
         >
           <XAxis
-            dataKey='Date'
-            tickFormatter={(date) => dateTick(date)}
+            dataKey='t'
+            tickFormatter={(date) => dateBottomChartTick(date, selectedTime)}
             interval='preserveStartEnd'
           />
           <YAxis orientation='right' domain={[minYValue, maxYValue]} />
@@ -59,12 +48,7 @@ export const Chart = () => {
             content={<CustomTooltip />}
             wrapperStyle={{ outline: 'none' }}
           />
-          <Area
-            type='monotone'
-            dataKey='Close'
-            stroke='#459cf8'
-            fill='#e2ecfa'
-          />
+          <Area type='monotone' dataKey='c' stroke='#459cf8' fill='#e2ecfa' />
         </AreaChart>
       </ResponsiveContainer>
     </div>
